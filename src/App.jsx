@@ -8,11 +8,14 @@ import { UploadFile } from './components/UploadFile'
 function App() {
   const [count, setCount] = useState(0)
 
+  
   return (
     <>
       <div>
         <WebcamFeed />
+
         <UploadFile />
+     
       </div>
     </>
   )
