@@ -7,10 +7,10 @@ import Footer from '../components/Footer';
 const Home = () => {
   return (
     <div className="bg-gray-900 text-white font-sans">
-      <Header />
-      <Hero />
+      {/* <Header /> */}
+      {/* <Hero /> */}
       <Features />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };
