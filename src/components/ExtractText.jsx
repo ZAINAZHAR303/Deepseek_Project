@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Tesseract from 'tesseract.js';
 import ReactMarkdown from "react-markdown";
+import Loader from './Loader';
 
 export const ExtractText = ({ image }) => {
+  const[loading,setloading] = useState(false)
   const [extractedText, setExtractedText] = useState(''); // State for extracted text
   const [isLoading, setIsLoading] = useState(false); // State for loading indicator
   const [apiResponse, setApiResponse] = useState(null); // State for API response
@@ -40,10 +42,13 @@ export const ExtractText = ({ image }) => {
   // Function to send extracted text to FastAPI
   const sendTextToFastAPI = async (text) => {
     try {
+      console.log("Send text to FastAPI")
+      setloading(true);
       const response = await fetch('https://deepseekbackend-production-0e65.up.railway.app/analyze', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+           "Connection": "keep-alive",
         },
         body: JSON.stringify({ extracted_text: text }),
       });
@@ -54,7 +59,8 @@ export const ExtractText = ({ image }) => {
 
       const data = await response.json();
       console.log('API Response:', data); // Log the API response for debugging
-      setApiResponse(data); // Set API response
+      setApiResponse(data);
+      setloading(false) // Set API response
     } catch (err) {
       console.error('Error sending text to FastAPI:', err);
       setError('Failed to communicate with the server.');
@@ -91,6 +97,7 @@ export const ExtractText = ({ image }) => {
           </pre>
         </div>
       )}
+      {loading && <p>getting response...</p>}
       {apiResponse && (
   <div style={{ marginTop: '20px' }}>
     <h2>Analysis Results:</h2>
@@ -119,6 +126,7 @@ export const ExtractText = ({ image }) => {
           <ReactMarkdown className="prose">{apiResponse.recommendations}</ReactMarkdown>
         </>
       )}
+      
     </div>
   </div>
 )}

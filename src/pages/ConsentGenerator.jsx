@@ -21,7 +21,9 @@ export default function ConsentGenerator() {
     setLoading(true);
     const response = await fetch("https://generateagrementbackend-production.up.railway.app/generate", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json",
+         "Connection": "keep-alive"
+       },
       body: JSON.stringify({ language, compliance, template, user_prompt: userPrompt }),
     });
     const data = await response.json();
