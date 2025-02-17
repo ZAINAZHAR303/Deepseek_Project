@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Tesseract from 'tesseract.js';
 import ReactMarkdown from "react-markdown";
-import Loader from './Loader';
+// import Loader from './Loader';
 
 export const ExtractText = ({ image }) => {
   const[loading,setloading] = useState(false)
