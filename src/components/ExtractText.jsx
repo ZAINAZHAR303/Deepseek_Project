@@ -44,7 +44,7 @@ export const ExtractText = ({ image }) => {
     try {
       console.log("Send text to FastAPI")
       setloading(true);
-      const response = await fetch('http://127.0.0.1:8000/analyze', {
+      const response = await fetch('https://deepseekbackend-production-0e65.up.railway.app/analyze', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
