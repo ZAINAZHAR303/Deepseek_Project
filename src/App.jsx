@@ -30,7 +30,7 @@ function App() {
         <Route path="/Summarize" element={<SumAggr />} />
 
         {/* Upload File Page */}
-        
+
       </Routes>
       <Footer />
     </Router>
@@ -38,3 +38,4 @@ function App() {
 }
 
 export default App;
+
